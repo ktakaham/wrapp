@@ -7,7 +7,7 @@ export const PcHeaderMenu = () => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '0 20px',
+    padding: '0 10px',
     height: '64px',
     backgroundColor: 'linear-gradient(45deg, #6a1b9a, #8e24aa)',
     position: 'sticky',
@@ -23,11 +23,11 @@ export const PcHeaderMenu = () => {
   return (
     <Box sx={headerStyle}>
       <Typography variant="h6" sx={{ flexGrow: 1, color: 'white', marginRight: '20px' }}>
-        グレース宣教会
+        ワーシップ
       </Typography>
       <Box sx={{ display: 'flex', gap: '10px' }}>
         <Button sx={buttonStyle}>
-          <Link href={pagesPath.$url().pathname} underline="none" color="inherit">ワーシップ</Link>
+          <Link href={pagesPath.$url().pathname} underline="none" color="inherit">一覧</Link>
         </Button>
         <Button sx={buttonStyle}>
           <Link href={pagesPath.p.post.$url().pathname} underline="none" color="inherit">

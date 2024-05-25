@@ -8,13 +8,13 @@ export const Footer = () => {
         <CardContent>
           <Typography variant="body2" color="textSecondary">
             <Link
-              href="https://gmi.or.jp/"
+              href="https://chapel-hp.vercel.app/"
               rel="noopener noreferrer"
               target="_blank"
               underline="none"
               sx={{ color: 'inherit', display: 'block', marginTop: '8px' }}
             >
-              © {currentYear} グレース宣教会. All rights reserved.
+              © {currentYear} グレース宣教会 東京チャペル
             </Link>
           </Typography>
         </CardContent>
