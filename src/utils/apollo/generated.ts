@@ -72,10 +72,6 @@ export enum CursorOrdering {
 /** mutation root */
 export type MutationRoot = {
   __typename?: 'mutation_root';
-  /** delete data from the table: "songs" */
-  delete_songs?: Maybe<SongsMutationResponse>;
-  /** delete single row from the table: "songs" */
-  delete_songs_by_pk?: Maybe<Songs>;
   /** insert data into the table: "songs" */
   insert_songs?: Maybe<SongsMutationResponse>;
   /** insert a single row into the table: "songs" */
@@ -86,18 +82,6 @@ export type MutationRoot = {
   update_songs_by_pk?: Maybe<Songs>;
   /** update multiples rows of table: "songs" */
   update_songs_many?: Maybe<Array<Maybe<SongsMutationResponse>>>;
-};
-
-
-/** mutation root */
-export type MutationRootDeleteSongsArgs = {
-  where: SongsBoolExp;
-};
-
-
-/** mutation root */
-export type MutationRootDeleteSongsByPkArgs = {
-  song_id: Scalars['Int'];
 };
 
 
@@ -156,23 +140,12 @@ export type QueryRoot = {
   __typename?: 'query_root';
   /** fetch data from the table: "songs" */
   songs: Array<Songs>;
-  /** fetch aggregated fields from the table: "songs" */
-  songs_aggregate: SongsAggregate;
   /** fetch data from the table: "songs" using primary key columns */
   songs_by_pk?: Maybe<Songs>;
 };
 
 
 export type QueryRootSongsArgs = {
-  distinct_on?: InputMaybe<Array<SongsSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<SongsOrderBy>>;
-  where?: InputMaybe<SongsBoolExp>;
-};
-
-
-export type QueryRootSongsAggregateArgs = {
   distinct_on?: InputMaybe<Array<SongsSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
@@ -192,42 +165,6 @@ export type Songs = {
   content_chord: Scalars['String'];
   song_id: Scalars['Int'];
   title: Scalars['String'];
-};
-
-/** aggregated selection of "songs" */
-export type SongsAggregate = {
-  __typename?: 'songs_aggregate';
-  aggregate?: Maybe<SongsAggregateFields>;
-  nodes: Array<Songs>;
-};
-
-/** aggregate fields of "songs" */
-export type SongsAggregateFields = {
-  __typename?: 'songs_aggregate_fields';
-  avg?: Maybe<SongsAvgFields>;
-  count: Scalars['Int'];
-  max?: Maybe<SongsMaxFields>;
-  min?: Maybe<SongsMinFields>;
-  stddev?: Maybe<SongsStddevFields>;
-  stddev_pop?: Maybe<SongsStddevPopFields>;
-  stddev_samp?: Maybe<SongsStddevSampFields>;
-  sum?: Maybe<SongsSumFields>;
-  var_pop?: Maybe<SongsVarPopFields>;
-  var_samp?: Maybe<SongsVarSampFields>;
-  variance?: Maybe<SongsVarianceFields>;
-};
-
-
-/** aggregate fields of "songs" */
-export type SongsAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<SongsSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
-};
-
-/** aggregate avg on columns */
-export type SongsAvgFields = {
-  __typename?: 'songs_avg_fields';
-  song_id?: Maybe<Scalars['Float']>;
 };
 
 /** Boolean expression to filter rows from the table "songs". All fields are combined with a logical 'AND'. */
@@ -258,24 +195,6 @@ export type SongsInsertInput = {
   content_chord?: InputMaybe<Scalars['String']>;
   song_id?: InputMaybe<Scalars['Int']>;
   title?: InputMaybe<Scalars['String']>;
-};
-
-/** aggregate max on columns */
-export type SongsMaxFields = {
-  __typename?: 'songs_max_fields';
-  content?: Maybe<Scalars['String']>;
-  content_chord?: Maybe<Scalars['String']>;
-  song_id?: Maybe<Scalars['Int']>;
-  title?: Maybe<Scalars['String']>;
-};
-
-/** aggregate min on columns */
-export type SongsMinFields = {
-  __typename?: 'songs_min_fields';
-  content?: Maybe<Scalars['String']>;
-  content_chord?: Maybe<Scalars['String']>;
-  song_id?: Maybe<Scalars['Int']>;
-  title?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "songs" */
@@ -327,24 +246,6 @@ export type SongsSetInput = {
   title?: InputMaybe<Scalars['String']>;
 };
 
-/** aggregate stddev on columns */
-export type SongsStddevFields = {
-  __typename?: 'songs_stddev_fields';
-  song_id?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type SongsStddevPopFields = {
-  __typename?: 'songs_stddev_pop_fields';
-  song_id?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type SongsStddevSampFields = {
-  __typename?: 'songs_stddev_samp_fields';
-  song_id?: Maybe<Scalars['Float']>;
-};
-
 /** Streaming cursor of the table "songs" */
 export type SongsStreamCursorInput = {
   /** Stream column input with initial value */
@@ -359,12 +260,6 @@ export type SongsStreamCursorValueInput = {
   content_chord?: InputMaybe<Scalars['String']>;
   song_id?: InputMaybe<Scalars['Int']>;
   title?: InputMaybe<Scalars['String']>;
-};
-
-/** aggregate sum on columns */
-export type SongsSumFields = {
-  __typename?: 'songs_sum_fields';
-  song_id?: Maybe<Scalars['Int']>;
 };
 
 /** update columns of table "songs" */
@@ -388,30 +283,10 @@ export type SongsUpdates = {
   where: SongsBoolExp;
 };
 
-/** aggregate var_pop on columns */
-export type SongsVarPopFields = {
-  __typename?: 'songs_var_pop_fields';
-  song_id?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate var_samp on columns */
-export type SongsVarSampFields = {
-  __typename?: 'songs_var_samp_fields';
-  song_id?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate variance on columns */
-export type SongsVarianceFields = {
-  __typename?: 'songs_variance_fields';
-  song_id?: Maybe<Scalars['Float']>;
-};
-
 export type SubscriptionRoot = {
   __typename?: 'subscription_root';
   /** fetch data from the table: "songs" */
   songs: Array<Songs>;
-  /** fetch aggregated fields from the table: "songs" */
-  songs_aggregate: SongsAggregate;
   /** fetch data from the table: "songs" using primary key columns */
   songs_by_pk?: Maybe<Songs>;
   /** fetch data from the table in a streaming manner: "songs" */
@@ -420,15 +295,6 @@ export type SubscriptionRoot = {
 
 
 export type SubscriptionRootSongsArgs = {
-  distinct_on?: InputMaybe<Array<SongsSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<SongsOrderBy>>;
-  where?: InputMaybe<SongsBoolExp>;
-};
-
-
-export type SubscriptionRootSongsAggregateArgs = {
   distinct_on?: InputMaybe<Array<SongsSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
@@ -511,7 +377,7 @@ export type GetSongLazyQueryHookResult = ReturnType<typeof useGetSongLazyQuery>;
 export type GetSongQueryResult = Apollo.QueryResult<GetSongQuery, GetSongQueryVariables>;
 export const GetSongListDocument = gql`
     query GetSongList {
-  songs {
+  songs(order_by: {song_id: asc}) {
     song_id
     title
   }
