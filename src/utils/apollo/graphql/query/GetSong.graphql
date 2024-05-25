@@ -1,0 +1,8 @@
+query GetSong($song_id:  Int!) {
+  songs(where: {song_id: {_eq: $song_id}}) {
+    song_id
+    title
+    content
+    content_chord
+  }
+}
