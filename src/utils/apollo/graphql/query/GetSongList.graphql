@@ -1,0 +1,6 @@
+query GetSongList {
+  songs {
+    song_id
+    title
+  }
+}

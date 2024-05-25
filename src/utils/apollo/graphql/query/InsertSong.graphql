@@ -1,0 +1,8 @@
+mutation InsertSong($song_id: Int!, $content: String!, $content_chord: String!, $title: String!) {
+  insert_songs_one(object: {song_id: $song_id, content: $content, content_chord: $content_chord, title: $title}, on_conflict: {constraint: songs_pkey, update_columns: [content, title,content_chord]}) {
+    content
+    content_chord
+    song_id
+    title
+  }
+}
