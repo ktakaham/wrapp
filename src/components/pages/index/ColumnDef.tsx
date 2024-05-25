@@ -1,12 +1,11 @@
 import EditIcon from "@mui/icons-material/Edit";
-// import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Box, Typography } from "@mui/material";
 import type { GridColDef } from "@mui/x-data-grid";
 import Link from "next/link";
 
 import { pagesPath } from "../../../utils/$path";
 
-export const columns: GridColDef[] = [
+export const columns: (isMobile: boolean) => GridColDef[] = (isMobile) => [
   {
     field: "id",
     headerName: "ID",
@@ -17,7 +16,7 @@ export const columns: GridColDef[] = [
   {
     field: "songName",
     headerName: "曲名",
-    width: 400,
+    width: isMobile ? 230 : 400,
     align: "left",
     headerAlign: "left",
     renderCell: (params) => (

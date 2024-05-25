@@ -16,7 +16,7 @@ import parse from "html-react-parser";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 import { useGetSongQuery } from "@/utils/apollo/generated";
@@ -50,7 +50,7 @@ export const PostPageComponent = () => {
   useEffect(() => {
     if (data?.songs) {
       const song = data.songs[0];
-      const formattedText = song?.content.replace(/\\n|\n/gi, "<br />") || "";
+      const formattedText = song?.content.replace(/\\n|\n|\r/gi, "<br />") || "";
       setContent(formattedText);
     }
   }, [data]);
@@ -62,8 +62,8 @@ export const PostPageComponent = () => {
   const toggleChord = () => {
     if (data?.songs) {
       const song = data.songs[0];
-      const formattedText = song?.content.replace(/\\n|\n/gi, "<br />") || "";
-      const formattedChord = song?.content_chord.replace(/\\n|\n/gi, "<br />") || "";
+      const formattedText = song?.content.replace(/\\n|\n|\r/gi, "<br />") || "";
+      const formattedChord = song?.content_chord.replace(/\\n|\n|\r/gi, "<br />") || "";
       setContent(content === formattedText ? formattedChord : formattedText);
     }
   };
