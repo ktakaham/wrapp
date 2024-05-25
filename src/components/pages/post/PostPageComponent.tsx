@@ -73,7 +73,7 @@ export const PostPageComponent = () => {
       <Head>
         <title>{loading ? "読み込み中..." : data?.songs[0]?.title}</title>
       </Head>
-      <Box>
+      <Box sx={{ mb: 10 }}>
         <FullScreen handle={handle}>
           <Card sx={{ m: 2, bgcolor: "background.paper", borderRadius: 2 }}>
             <CardHeader

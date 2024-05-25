@@ -1,12 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoadingButton } from "@mui/lab";
-import { CircularProgress, Container, Stack, TextField, Typography } from "@mui/material";
+import { CircularProgress, Container, TextField, Typography } from "@mui/material";
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { FormProvider } from "react-hook-form";
 import { useForm } from "react-hook-form";
-import { toast } from 'react-hot-toast'; // react-hot-toastをインポート
+import { toast } from 'react-hot-toast';
 import * as yup from "yup";
 
 import { useGetSongQuery, useInsertSongMutation } from "@/utils/apollo/generated";
@@ -20,6 +20,7 @@ export const PostPageComponent: NextPage = () => {
     postId: yup.number().required(),
     title: yup.string().required(),
     content: yup.string().required(),
+    content_chord: yup.string().required(),
   });
 
   const useFormMethods = useForm({
@@ -28,7 +29,7 @@ export const PostPageComponent: NextPage = () => {
     resolver: yupResolver(schema),
   });
 
-  const { handleSubmit, register, reset, getValues } = useFormMethods;
+  const { handleSubmit, register, reset } = useFormMethods;
 
   const postId = Array.isArray(pid) ? pid[0] : pid;
   const { data, loading: getSongLoading } = useGetSongQuery({
@@ -88,14 +89,16 @@ export const PostPageComponent: NextPage = () => {
       <Container sx={{ mt: 2, pb: 4 }}>
         <FormProvider {...useFormMethods}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Stack direction="row">
-              <Typography align="left" variant="h5" color="primary">
-                曲番号
-              </Typography>
-              <Typography ml={1} align="left" variant="h5">
-                {getValues("postId")}
-              </Typography>
-            </Stack>
+            <Typography align="left" variant="h5" color="primary">
+              曲番号
+            </Typography>
+            <TextField
+              required
+              margin="normal"
+              {...register("postId")}
+              type="number"
+              fullWidth
+            />
             <Typography mt={2} align="left" variant="h5" color="primary">
               曲名
             </Typography>
@@ -133,7 +136,7 @@ export const PostPageComponent: NextPage = () => {
               color="primary"
               variant="outlined"
               loading={insertSongLoading}
-              sx={{ width: 150, margin: "0 auto", display: "flex" }}
+              sx={{ width: 150, margin: "0 auto", mb: 10, display: "flex" }}
             >
               登録
             </LoadingButton>
