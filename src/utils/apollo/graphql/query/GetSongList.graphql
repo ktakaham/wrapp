@@ -1,5 +1,5 @@
 query GetSongList {
-  songs {
+  songs(order_by: {song_id: asc}) {
     song_id
     title
   }
