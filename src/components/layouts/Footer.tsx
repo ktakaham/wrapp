@@ -1,9 +1,9 @@
 import { Box, Card, CardContent, Link, Typography } from "@mui/material";
 
 export const Footer = () => {
-  const currentYear = new Date().getFullYear(); // 現在の年を取得
+  const currentYear = new Date().getFullYear();
   return (
-    <Box sx={{ width: '100%', position: 'fixed', bottom: 0, left: 0, textAlign: 'center' }}>
+    <Box sx={{ width: '100%', position: 'fixed', bottom: 0, left: 0, textAlign: 'center', zIndex: 100 }}>
       <Card variant="outlined">
         <CardContent>
           <Typography variant="body2" color="textSecondary">

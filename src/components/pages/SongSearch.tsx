@@ -12,7 +12,7 @@ export const SongSearch = () => {
     router.push(pagesPath.posts._postId(textValue).$url());
   };
 
-  const handleTextFieldChange = (event: { target: { value: any } }) => {
+  const handleTextFieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTextValue(event.target.value);
   };
 
@@ -31,7 +31,6 @@ export const SongSearch = () => {
             paddingLeft: (theme) => theme.spacing(2.5),
             borderRadius: 5,
           },
-          zIndex: -1
         }}
         inputProps={{
           type: "number",

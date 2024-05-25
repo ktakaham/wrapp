@@ -1,4 +1,4 @@
-import { Box, Container, Typography, useMediaQuery,useTheme } from "@mui/material/";
+import { Box, Container, Typography, useMediaQuery, useTheme } from "@mui/material/";
 import { DataGrid } from "@mui/x-data-grid";
 
 import { useGetSongListQuery } from "@/utils/apollo/generated";
