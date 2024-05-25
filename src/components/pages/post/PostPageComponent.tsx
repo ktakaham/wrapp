@@ -71,7 +71,7 @@ export const PostPageComponent = () => {
   return (
     <>
       <Head>
-        <title>{loading ? "読み込み中..." : data?.songs[0]?.title}</title>
+        <title>data?.songs[0]?.title</title>
       </Head>
       <Box sx={{ mb: 10 }}>
         <FullScreen handle={handle}>
