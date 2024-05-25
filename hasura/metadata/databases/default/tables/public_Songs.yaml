@@ -1,3 +1,34 @@
 table:
   name: songs
   schema: public
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - content
+        - content_chord
+        - title
+        - song_id
+    comment: ""
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - content
+        - content_chord
+        - title
+        - song_id
+      filter: {}
+    comment: ""
+update_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - content
+        - content_chord
+        - title
+        - song_id
+      filter: {}
+      check: {}
+    comment: ""
