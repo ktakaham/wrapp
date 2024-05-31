@@ -71,7 +71,7 @@ export const PostPageComponent = () => {
   return (
     <>
       <Head>
-        <title>data?.songs[0]?.title</title>
+        <title>{data?.songs[0]?.title || ''}</title>
       </Head>
       <Box sx={{ mb: 10 }}>
         <FullScreen handle={handle}>
@@ -79,7 +79,9 @@ export const PostPageComponent = () => {
             <CardHeader
               action={
                 <Stack direction="row" spacing={1}>
-                  <ScreenToggle handle={handle} />
+                  <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                    <ScreenToggle handle={handle} />
+                  </Box>
                   <ButtonGroup size="small" variant="text">
                     <Button onClick={() => adjustFontSize(-3)}>
                       <TextDecreaseIcon />
@@ -93,7 +95,7 @@ export const PostPageComponent = () => {
                   </ButtonGroup>
                 </Stack>
               }
-              title={<Typography variant="h5" >{loading ? <Skeleton width="40%" /> : data?.songs[0]?.title}</Typography>}
+              title={<Typography variant="h5" fontSize={fontSize}>{loading ? <Skeleton width="40%" /> : data?.songs[0]?.title}</Typography>}
             />
           </Card>
           <Card sx={{ m: 2, bgcolor: "background.paper", borderRadius: 2 }}>
@@ -107,7 +109,7 @@ export const PostPageComponent = () => {
             <SongSearch />
           </Box>
           <Box sx={{ m: 2, textAlign: "center" }}>
-            <Link href={pagesPath.$url()} passHref>
+            <Link href={pagesPath.$url()} passHref style={{ textDecorationColor: "grey" }}>
               <Typography sx={{ fontSize: 16, cursor: "pointer" }}>TOPページに戻る</Typography>
             </Link>
           </Box>

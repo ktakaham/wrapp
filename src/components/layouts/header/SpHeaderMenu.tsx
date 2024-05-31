@@ -1,7 +1,11 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import { Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import { Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material";
+import Link from 'next/link';
 import router from 'next/router';
 import { useState } from "react";
+
+import { ThemeToggle } from "@/components/elements/button/ThemeButton";
+import { pagesPath } from '@/utils/$path';
 
 export const SpHeaderMenu = () => {
   const [open, setOpen] = useState(false);
@@ -21,6 +25,7 @@ export const SpHeaderMenu = () => {
           xs: "flex",
           sm: "none",
         },
+        alignItems: "center",
       }}
     >
       <IconButton
@@ -33,6 +38,12 @@ export const SpHeaderMenu = () => {
       >
         <MenuIcon />
       </IconButton>
+      <Typography variant="h6" sx={{ flexGrow: 1, textAlign: "center", ml: -5 }}>
+        <Link href={pagesPath.$url().pathname} style={{ textDecoration: 'none', color: 'white' }}>
+          ワーシップ
+        </Link>
+      </Typography>
+      <ThemeToggle />
       <Drawer
         anchor="left"
         open={open}
@@ -56,6 +67,5 @@ export const SpHeaderMenu = () => {
         </List>
       </Drawer>
     </Box>
-  );
+  )
 };
-

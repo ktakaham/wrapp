@@ -29,7 +29,7 @@ export const SongSearch = () => {
           "& input": { paddingLeft: (theme) => theme.spacing(3.5) },
           "& fieldset": {
             paddingLeft: (theme) => theme.spacing(2.5),
-            borderRadius: 5,
+            borderRadius: 4,
           },
         }}
         inputProps={{

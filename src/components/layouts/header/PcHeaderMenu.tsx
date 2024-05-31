@@ -1,4 +1,7 @@
-import { Box, Button, Link, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
+import Link from "next/link";
+
+import { ThemeToggle } from "@/components/elements/button/ThemeButton";
 
 import { pagesPath } from "../../../utils/$path";
 
@@ -12,7 +15,7 @@ export const PcHeaderMenu = () => {
     backgroundColor: 'linear-gradient(45deg, #6a1b9a, #8e24aa)',
     position: 'sticky',
     top: 0,
-    zIndex: 1100
+    zIndex: 1100,
   };
 
   const buttonStyle = {
@@ -20,21 +23,41 @@ export const PcHeaderMenu = () => {
     textTransform: 'none'
   };
 
+  const themeToggleStyle = {
+    position: 'absolute',
+    right: '20px'
+  };
+
   return (
-    <Box sx={headerStyle}>
-      <Typography variant="h6" sx={{ flexGrow: 1, color: 'white', marginRight: '20px' }}>
-        ワーシップ
-      </Typography>
-      <Box sx={{ display: 'flex', gap: '10px' }}>
-        <Button sx={buttonStyle}>
-          <Link href={pagesPath.$url().pathname} underline="none" color="inherit">一覧</Link>
-        </Button>
-        <Button sx={buttonStyle}>
-          <Link href={pagesPath.p.post.$url().pathname} underline="none" color="inherit">
-            新規追加
+    <>
+      <Box sx={headerStyle}>
+        <Button sx={{ flexGrow: 1, marginRight: '5px' }}>
+          <Link href={pagesPath.$url().pathname} style={{ textDecoration: 'none' }}>
+            <Typography variant="h6" sx={{ color: 'white' }}>
+              ワーシップ
+            </Typography>
           </Link>
         </Button>
+        <Box sx={{ display: 'flex', gap: '1px', flexGrow: 1 }}>
+          <Button sx={buttonStyle}>
+            <Link href={pagesPath.$url().pathname} color="inherit" style={{ textDecoration: 'none' }}>
+              <Typography fontSize="14px" sx={{ color: 'white' }}>
+                一覧
+              </Typography>
+            </Link>
+          </Button>
+          <Button sx={buttonStyle}>
+            <Link href={pagesPath.p.post.$url().pathname} color="inherit" style={{ textDecoration: 'none' }}>
+              <Typography fontSize="14px" sx={{ color: 'white' }}>
+                新規追加
+              </Typography>
+            </Link>
+          </Button>
+        </Box>
+      </Box >
+      <Box sx={themeToggleStyle}>
+        <ThemeToggle />
       </Box>
-    </Box>
+    </>
   );
 };
