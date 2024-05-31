@@ -8,6 +8,8 @@ import {
   Card,
   CardContent,
   CardHeader,
+  Divider,
+  Grid,
   Skeleton,
   Stack,
   Typography,
@@ -38,26 +40,29 @@ const YouTubeEmbed = ({ title }: { title: string }) => {
 
   useEffect(() => {
     if (title) {
-      fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${title}&type=video&key=AIzaSyC59C2D6aPEEL7EL_t5XgcKkOX5t-bgho8`)
+      fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${title}&type=video&maxResults=6&key=AIzaSyC59C2D6aPEEL7EL_t5XgcKkOX5t-bgho8`)
         .then(response => response.json())
         .then(data => setVideos(data.items || []));
     }
   }, [title]);
 
   return (
-    <Box sx={{ m: 2 }}>
-      {videos.map((video) => (
-        <iframe
-          key={video.id.videoId}
-          width="100%"
-          height="315"
-          src={`https://www.youtube.com/embed/${video.id.videoId}`}
-          title={video.snippet.title}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-      ))}
+    <Box sx={{ m: 2, maxWidth: '100%' }}>
+      <Grid container spacing={2}>
+        {videos.map((video) => (
+          <Grid item xs={12} md={4} xl={3} key={video.id.videoId} >
+            <iframe
+              width="100%"
+              height="315"
+              src={`https://www.youtube.com/embed/${video.id.videoId}`}
+              title={video.snippet.title}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </Grid>
+        ))}
+      </Grid>
     </Box>
   );
 };
@@ -142,8 +147,17 @@ export const PostPageComponent = () => {
               <Typography sx={{ fontSize: 16, cursor: "pointer" }}>TOPページに戻る</Typography>
             </Link>
           </Box>
-          <YouTubeEmbed title={data?.songs[0]?.title || ''} />
         </FullScreen>
+        <Divider sx={{ mt: 5 }} />
+        <Box sx={{ m: 2 }}>
+          <Typography sx={{ mb: 2, fontSize: 15 }}>
+            YouTube検索結果
+          </Typography>
+          <YouTubeEmbed title={data?.songs[0]?.title || ''} />
+          <Typography variant="body2" sx={{ mt: 2 }}>
+            こちらは「{data?.songs[0]?.title || 'この曲'}」のYouTube検索結果です。
+          </Typography>
+        </Box>
       </Box>
     </>
   );
