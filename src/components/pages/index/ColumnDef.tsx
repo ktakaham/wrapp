@@ -20,7 +20,7 @@ export const columns: (isMobile: boolean) => GridColDef[] = (isMobile) => [
     align: "left",
     headerAlign: "left",
     renderCell: (params) => (
-      <Link href={pagesPath.posts._postId(params.id).$url()}>
+      <Link href={pagesPath.posts._postId(params.id).$url()} style={{ textDecorationColor: 'grey' }}>
         <Box component="a" sx={{ cursor: "pointer", display: "flex", alignItems: "center", height: "100%" }}>
           <Typography fontSize={16} sx={{ ml: 0 }}>{params.value}</Typography>
         </Box>
@@ -35,7 +35,7 @@ export const columns: (isMobile: boolean) => GridColDef[] = (isMobile) => [
     renderCell: (params) => (
       <Link href={pagesPath.p.post._postId(params.id).$url()}>
         <Box component="a" sx={{ cursor: "pointer" }}>
-          <EditIcon sx={{ fontSize: "large", mr: 0.5 }} />
+          <EditIcon sx={{ fontSize: "large", mr: 0.5, color: 'grey' }} />
         </Box>
       </Link>
     ),

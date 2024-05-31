@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { toast } from 'react-hot-toast';
 import * as yup from "yup";
 
+import { pagesPath } from "@/utils/$path";
 import { useGetSongQuery, useInsertSongMutation } from "@/utils/apollo/generated";
 
 export const PostPageComponent: NextPage = () => {
@@ -61,8 +62,12 @@ export const PostPageComponent: NextPage = () => {
           postId: val.insert_songs_one?.song_id,
           title: val.insert_songs_one?.title,
           content: val.insert_songs_one?.content
-        })
+        });
         toast.success('登録が完了しました。'); // 登録完了時のtoast
+        if (val.insert_songs_one?.song_id) {
+          const url = pagesPath.posts._postId(val.insert_songs_one.song_id).$url();
+          router.push(url);
+        }
       },
       onError: (e) => {
         console.error(e);
