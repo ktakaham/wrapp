@@ -33,6 +33,35 @@ const Skeletons = () => (
   </>
 );
 
+const YouTubeEmbed = ({ title }: { title: string }) => {
+  const [videos, setVideos] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (title) {
+      fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${title}&type=video&key=AIzaSyC59C2D6aPEEL7EL_t5XgcKkOX5t-bgho8`)
+        .then(response => response.json())
+        .then(data => setVideos(data.items || []));
+    }
+  }, [title]);
+
+  return (
+    <Box sx={{ m: 2 }}>
+      {videos.map((video) => (
+        <iframe
+          key={video.id.videoId}
+          width="100%"
+          height="315"
+          src={`https://www.youtube.com/embed/${video.id.videoId}`}
+          title={video.snippet.title}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      ))}
+    </Box>
+  );
+};
+
 export const PostPageComponent = () => {
   const [fontSize, setFontSize] = useState<number>(20);
   const [content, setContent] = useState<string>("");
@@ -113,6 +142,7 @@ export const PostPageComponent = () => {
               <Typography sx={{ fontSize: 16, cursor: "pointer" }}>TOPページに戻る</Typography>
             </Link>
           </Box>
+          <YouTubeEmbed title={data?.songs[0]?.title || ''} />
         </FullScreen>
       </Box>
     </>
