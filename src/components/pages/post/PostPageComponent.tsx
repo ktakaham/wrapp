@@ -40,7 +40,7 @@ const YouTubeEmbed = ({ title }: { title: string }) => {
 
   useEffect(() => {
     if (title) {
-      fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${title}&type=video&maxResults=6&key=AIzaSyC59C2D6aPEEL7EL_t5XgcKkOX5t-bgho8`)
+      fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${title}&type=video&maxResults=6&key=AIzaSyAsCGpyOCighthp44r4G7CMGbp7vhqmS5k`)
         .then(response => response.json())
         .then(data => setVideos(data.items || []));
     }
